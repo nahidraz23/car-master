@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { BsHandbag } from "react-icons/bs";
+import { IoIosSearch } from "react-icons/io";
 
 const Navbar = () => {
 
@@ -28,7 +30,7 @@ const Navbar = () => {
     ]
 
     return (
-        <div className='bg-base-100'>
+        <div className='bg-base-100 py-5'>
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -49,15 +51,9 @@ const Navbar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li><a>Item 1</a></li>
-                            <li>
-                                <a>Parent</a>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a>Item 3</a></li>
+                           {
+                            navLinks.map((item) => <Link className='hover:text-orange duration-200 font-semibold' href={item.path} key={item.path}>{item.title}</Link>)
+                           }
                         </ul>
                     </div>
                     <Link href={'/'}>
@@ -67,12 +63,16 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <div className='flex gap-10'>
                         {
-                            navLinks.map((item) => <Link className='hover:text-orange duration-200' href={item.path} key={item.path}>{item.title}</Link>)
+                            navLinks.map((item) => <Link className='hover:text-orange duration-200 font-semibold' href={item.path} key={item.path}>{item.title}</Link>)
                         }
                     </div>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <div className='flex items-center gap-4'>
+                        <BsHandbag className='text-2xl' />
+                        <IoIosSearch className='text-2xl'/>
+                        <a className="btn btn-outline border-orange text-orange hover:bg-orange hover:border-none">Appointment</a>
+                    </div>
                 </div>
             </div>
         </div>
